@@ -1,11 +1,18 @@
 package de.drentech.innihald.domain.model;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.xml.bind.annotation.XmlAttribute;
 import javax.xml.bind.annotation.XmlRootElement;
+import java.util.Date;
 
 @XmlRootElement
-@Entity
-public class Document extends BaseEntity {
+@Entity(name = "document")
+public class Document extends BaseEntity  {
 
     private String title;
 

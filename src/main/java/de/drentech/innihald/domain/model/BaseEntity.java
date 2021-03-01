@@ -1,50 +1,46 @@
 package de.drentech.innihald.domain.model;
 
-import javax.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.MappedSuperclass;
 import javax.xml.bind.annotation.XmlAttribute;
 import java.util.Date;
 
-@Entity
-public abstract class BaseEntity {
+@MappedSuperclass
+public class BaseEntity {
     @Id
     @GeneratedValue
     private Long id;
 
-    private Date created;
-    private Date updated;
+    @CreationTimestamp
+    private Date createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        created = new Date();
-    }
-
-    @PreUpdate
-    protected void onUpdate() {
-        updated = new Date();
-    }
+    @UpdateTimestamp
+    private Date updatedAt;
 
     @XmlAttribute
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    @XmlAttribute
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public Date getCreated() {
-        return created;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    @XmlAttribute
+    public Date getUpdatedAt() {
+        return updatedAt;
     }
 
-    public Date getUpdated() {
-        return updated;
-    }
-
-    public void setUpdated(Date updated) {
-        this.updated = updated;
+    public void setUpdatedAt(Date updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }
